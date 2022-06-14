@@ -1,29 +1,34 @@
 import initialState from './initialState';
 
-
 export default function contactReducer(state = initialState.contacts, action) {
-    switch(action.type) {
-        
-        /* Add contacts to the state array */
-     
-		case "ADD_CONTACT": {
+	switch(action.type) {
+		case "ADD_CONTACT": 
 			return {
 				...state,
 				contactList: [...state.contactList, state.newContact]
 			}
-		}
-        
-        /* Handle input for the contact form. 
-        The payload (input changes) gets merged with the newContact object
-        */
+		
 
-		case "HANDLE_INPUT_CHANGE": {
+		case "HANDLE_INPUT_CHANGE": 
 			
 			return {
 				...state, newContact: {
 					...state.newContact, ...action.payload }
 			}
-		}
+		
+
+		case "REQUEST_CONTACTS":
+			return {
+				...state, isFetching: true
+			}
+		
+
+		case "RECEIVE_CONTACTS": 
+			return {
+				...state, isFetching: false, contactList: action.payload
+			}
+	
+		
 
 		default: return state;
 	}

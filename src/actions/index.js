@@ -5,7 +5,7 @@ export const addContact =() => {
 	}
 }
 
-export const handleInputChange = (name, value) => {
+export const onInputChange = (name, value) => {
 	return {
 		
 		type: "HANDLE_INPUT_CHANGE",
